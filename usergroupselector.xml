@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>plg_system_usergroupselector</name>
+	<author>Function90.com</author>
+	<creationDate>September 2013</creationDate>
+	<copyright>Copyright (C) 20012 Function90.com. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>dev.function90@gmail.com</authorEmail>
+	<authorUrl>www.function90.com</authorUrl>
+	<version>0.0.2</version>
+	<description>User Group Selection from Front-end.</description>
+	<files>
+		<filename plugin="usergroupselector">usergroupselector.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.plg_system_usergroupselector.ini</language>
+		<language tag="en-GB">en-GB.plg_system_usergroupselector.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="allowed_groups"
+					type="usergroup"
+					multiple="true"
+					default=""
+					label="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_ALLOWED_USERGROUPS"
+					description="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_ALLOWED_USERGROUPS_DESC"
+				/>
+				
+				<field
+					name="label"
+					type="text"
+					default="User Group"
+					label="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_LABEL"
+					description="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_LABEL_DESC"
+				/>
+				
+				<field
+					name="desc"
+					type="textarea"
+					default="Select user group..."
+					label="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_DESC"
+					description="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_DESC_DESC"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
