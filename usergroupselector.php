@@ -43,27 +43,31 @@ class plgSystemUsergroupselector extends JPlugin
 		
 		$allowed_groups = $this->params->get('allowed_groups');
 		
-		$xml = '
-				<fieldset name="usergroupselector">
+		$xml = "<fieldset name='usergroupselector'>
 					<field 
-						type="list"
-						name="usergroupselector"
-						label="'.JText::_($this->params->get('label')).'"
-						description="'.JText::_($this->params->get('desc')).'">';
+						type='list'
+						name='usergroupselector'
+						label='".$this->params->get('label')."'
+						description='".$this->params->get('desc')."'>";
 						
 		foreach($allowed_groups as $group){
 			if(isset($groups[$group])){
-				$xml .= '<option value="'.$group.'">'.$groups[$group]->title.'</option>';
+				$xml .= "<option value='".$group."'><![CDATA[ ".$this->xmlEscape($groups[$group]->title)." ]]></option>";
 			}
 		}
 						
-		$xml .=	'</field>
+		$xml .=	"</field>
 				</fieldset>
-				';
+				";
 		
 		$form->setField(new SimpleXMLElement($xml));				
 	}
 	
+	function xmlEscape($string) 
+	{
+    	return str_replace(array('&', '<', '>', '\'', '"'), array('&amp;', '&lt;', '&gt;', '&apos;', '&quot;'), $string);
+	}
+
 	public function getJoomlaUserGroups()
 	{
 		$db = JFactory::getDbo();
