@@ -48,11 +48,22 @@ class plgSystemUsergroupselector extends JPlugin
 						type='list'
 						name='usergroupselector'
 						label='".$this->params->get('label')."'
-						description='".$this->params->get('desc')."'>";
-						
-		foreach($allowed_groups as $group){
-			if(isset($groups[$group])){
-				$xml .= "<option value='".$group."'><![CDATA[ ".$this->xmlEscape($groups[$group]->title)." ]]></option>";
+						description='".$this->params->get('desc')."'";
+		
+		if($this->params->get('required', false)){
+			$xml .= ' required="true"';
+		}
+
+		$default = $this->params->get('default_group', false);
+		if($default != false){
+			$xml .= ' default="'.$default.'"';
+		}
+		
+		$xml .= ">";
+		
+		foreach($groups as $groupid => $group){
+			if(in_array($groupid, $allowed_groups)){
+				$xml .= "<option value='".$groupid."'><![CDATA[ ".$this->xmlEscape($group->title)." ]]></option>";
 			}
 		}
 						
@@ -73,7 +84,8 @@ class plgSystemUsergroupselector extends JPlugin
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true)
 			->select('*')
-			->from($db->quoteName('#__usergroups'));
+			->from($db->quoteName('#__usergroups'))
+			->order('title');
 		$db->setQuery($query);
 		return $db->loadObjectList('id');
 	}

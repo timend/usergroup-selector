@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>dev.function90@gmail.com</authorEmail>
 	<authorUrl>www.function90.com</authorUrl>
-	<version>0.0.3</version>
+	<version>1.0.0</version>
 	<description>User Group Selection from Front-end.</description>
 	<files>
 		<filename plugin="usergroupselector">usergroupselector.php</filename>
@@ -26,26 +26,47 @@
 					name="allowed_groups"
 					type="usergroup"
 					multiple="true"
+					required="true"
 					default=""
-					label="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_ALLOWED_USERGROUPS"
-					description="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_ALLOWED_USERGROUPS_DESC"
+					label="PLG_SYSTEM_USERGROUPSELECTOR_ALLOWED_USERGROUPS"
+					description="PLG_SYSTEM_USERGROUPSELECTOR_ALLOWED_USERGROUPS_DESC"
 				/>
 				
 				<field
 					name="label"
 					type="text"
 					default="User Group"
-					label="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_LABEL"
-					description="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_LABEL_DESC"
+					label="PLG_SYSTEM_USERGROUPSELECTOR_LABEL"
+					description="PLG_SYSTEM_USERGROUPSELECTOR_LABEL_DESC"
 				/>
 				
 				<field
 					name="desc"
 					type="textarea"
 					default="Select user group..."
-					label="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_DESC"
-					description="PLG_SYSTEM_TEMPLATE_USERGROUPSELECTOR_DESC_DESC"
+					label="PLG_SYSTEM_USERGROUPSELECTOR_DESC"
+					description="PLG_SYSTEM_USERGROUPSELECTOR_DESC_DESC"
 				/>
+				
+				<field
+					name="required"
+					type="radio"
+					default="0"
+					class="btn-group"
+					label="PLG_SYSTEM_USERGROUPSELECTOR_REQUIRED"
+					description="PLG_SYSTEM_USERGROUPSELECTOR_REQUIRED_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field
+					name="default_group"
+					type="usergroup"
+					default=""
+					required="true"
+					label="PLG_SYSTEM_USERGROUPSELECTOR_DEFAULT_USERGROUP"
+					description="PLG_SYSTEM_USERGROUPSELECTOR_DEFAULT_USERGROUP_DESC">
+				</field>
 			</fieldset>
 		</fields>
 	</config>
