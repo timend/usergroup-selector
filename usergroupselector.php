@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-class plgSystemUsergroupselector extends JPlugin
+class plgUserUsergroupselector extends JPlugin
 {
 	protected $autoloadLanguage = true;
 		
