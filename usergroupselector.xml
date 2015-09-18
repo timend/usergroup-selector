@@ -60,6 +60,17 @@
 				</field>
 				
 				<field
+					name="multiple"
+					type="radio"
+					default="0"
+					class="btn-group"
+					label="PLG_USER_USERGROUPSELECTOR_MULTIPLE"
+					description="PLG_USER_USERGROUPSELECTOR_MULTIPLE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field
 					name="default_group"
 					type="usergroup"
 					default=""

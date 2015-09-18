@@ -16,18 +16,27 @@ class plgUserUsergroupselector extends JPlugin
 	public function onUserAfterSave($user, $isnew, $success, $msg)
 	{
 		$allowed_groups = $this->params->get('allowed_groups');
-		if($isnew && $success){
+		if($isnew && $success) {
 			$input = JFactory::getApplication()->input;
 			$requestData  = $input->post->get('jform', array(), 'array');
-			if(isset($requestData['usergroupselector']) && in_array($requestData['usergroupselector'], $allowed_groups)){				
-				$juser = JFactory::getUser($user['id']);
-				$juser->groups = array($requestData['usergroupselector']);
-				unset($requestData['usergroupselector']);
-				$input->set('jform', $requestData, 'array');
-				$juser->save();
+			if(isset($requestData['usergroupselector'])) {
+				$selected_groups = $requestData['usergroupselector'];
+
+				if (!$this->params->get('multiple', false)) {
+					$selected_groups = array($selected_groups);
+				}
+				
+				if (!array_diff($selected_groups, $allowed_groups)) {				
+					$juser = JFactory::getUser($user['id']);
+					$juser->groups = $selected_groups;
+					unset($requestData['usergroupselector']);
+					$input->set('jform', $requestData, 'array');
+					$juser->save();
+				}
 			}
 		}
 	}
+	
 	public function onContentPrepareForm($form, $data)
 	{
 		$app = JFactory::getApplication();
@@ -43,9 +52,11 @@ class plgUserUsergroupselector extends JPlugin
 		
 		$allowed_groups = $this->params->get('allowed_groups');
 		
+		$type = $this->params->get('multiple', false) ? 'checkboxes' : 'list';
+		
 		$xml = "<fieldset name='usergroupselector'>
 					<field 
-						type='list'
+						type='".$type."'
 						name='usergroupselector'
 						label='".$this->params->get('label')."'
 						description='".$this->params->get('desc')."'";
